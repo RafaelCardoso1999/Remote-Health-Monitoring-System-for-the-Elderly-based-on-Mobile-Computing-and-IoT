@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .button{
+  position: relative;
+  margin:0 0.9em 2.0em 0;
+  background-color: black;
+  border-radius: 4em;
+  font-size: 16px;
+  color: white;
+  padding: 0.8em 1.8em;
+  cursor:pointer;
+  user-select:none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.button:hover {
+  transition-duration: 0.1s;
+  background-color: #3A3A3A;
+}
+
+.button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 10px 40px white;
+}
+
+.button:active:after {
+  box-shadow: 0 0 0 0 white;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top:0;
+  opacity: 1;
+  transition: 0s;
+}
+
+.button:active {
+  top: 1px;
+}
+
+
+
+/* ---------- Looking nice on CodePen ---------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+
+html, body{
+  height:100%;
+  margin: 0;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Jost", sans-serif;
+  font-size:14px;
+  background-image: linear-gradient(to bottom right, #ffa578, #ff675a);
+}
+
+h1 {
+  font-size: calc(1.5em + 3vw);
+  margin: -2em 0 2em;
+  text-align:center;
+  line-height:1.3em;
+}
+
+h2 {   position: relative; left: 0px; top: 0px;  margin: -2em 0 2em;
+color: #450650; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; }
+
+    </style>
+
+    <title>Health Remote Monitor System</title>
+        
+    </head>
+
+
+    <head>
+      <script>function display_ct7() {
+        var x = new Date()
+        var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+        hours = x.getHours( ) % 12;
+        hours = hours ? hours : 12;
+        hours=hours.toString().length==1? 0+hours.toString() : hours;
+        
+        var minutes=x.getMinutes().toString()
+        minutes=minutes.length==1 ? 0+minutes : minutes;
+        
+        var seconds=x.getSeconds().toString()
+        seconds=seconds.length==1 ? 0+seconds : seconds;
+        
+        var month=(x.getMonth() +1).toString();
+        month=month.length==1 ? 0+month : month;
+        
+        var dt=x.getDate().toString();
+        dt=dt.length==1 ? 0+dt : dt;
+        
+        var x1=month + "/" + dt + "/" + x.getFullYear(); 
+        x1 = x1 + " - " +  hours + ":" +  minutes + ":" +  seconds + " " + ampm;
+        document.getElementById('ct7').style.fontSize='25px';
+        document.getElementById('ct7').style.color='#320FC6';
+        document.getElementById('ct7').innerHTML = x1;
+        display_c7();
+         }
+         function display_c7(){
+        var refresh=1000; // Refresh rate in milli seconds
+        mytime=setTimeout('display_ct7()',refresh)
+        }
+        display_c7()
+        </script>
+        <span id='ct7' ></span>
+
+    </head>
+
+
+    <body>
+        
+        <h2>Remote Monitoring App</h2>
+        <a type="submit" class="button" id="BpMbutton">Monitor Heart Rate</a>
+        <a type="submit" class="button" id="SpO2button">Monitor SpO2</a>
+        <a type="submit" class="button" id="Locationbutton">See User Location</a>
+        <a type="submit" class="button" id="Fallsbutton">See Falls History</a>
+
+
+    </body>
+    <script>
+        
+
+
+        document.getElementById("BpMbutton").addEventListener("click", redirectFunction);
+        document.getElementById("SpO2button").addEventListener("click", redirectSPO2Function);
+        document.getElementById("Locationbutton").addEventListener("click", redirectLocFunction);
+        document.getElementById("Fallsbutton").addEventListener("click", redirectFallsFunction);
+
+        
+        function redirectFunction(){
+            window.location.href = "http://localhost:1234/BPM.php";
+            // You can also use window.location.replace method
+            
+            /*
+             * window.location.replace("https://www.example.com");
+             */
+        }
+
+        function redirectSPO2Function(){
+            window.location.href = "http://localhost:1234/SPO2.php";
+            // You can also use window.location.replace method
+            
+            /*
+             * window.location.replace("https://www.example.com");
+             */
+        }
+
+        function redirectLocFunction(){
+            window.location.href = "http://localhost:1234/Location.php";
+            // You can also use window.location.replace method
+            
+            /*
+             * window.location.replace("https://www.example.com");
+             */
+        }
+        function redirectFallsFunction(){
+            window.location.href = "http://localhost:1234/FALLS.php";
+            // You can also use window.location.replace method
+            
+            /*
+             * window.location.replace("https://www.example.com");
+             */
+        }
+    </script>
+</html>
